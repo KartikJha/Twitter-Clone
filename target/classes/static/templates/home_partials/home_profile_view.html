@@ -1,0 +1,81 @@
+<br>
+<br>
+<div class="col-md-9">
+    <h3>User Details</h3>
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{userProfile.first}} {{userProfile.last}}</h4>
+            <h5 class="card-text">Username : {{userProfile.handle}}</h5>
+            <h5 class="card-text">Email : {{userProfile.email}}</h5>
+            <h5 class="card-text">Total Followers : {{followers.length}}</h5>
+            <h5 class="card-text">Total Following : {{following.length}}</h5>
+            <h4 class="card-title">Interests</h4>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.cricket">Cricket</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.football">Football</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.mma">MMA</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.kabaddi">Kabaddi</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.golf">Golf</h5>
+            <a  class="btn btn-primary" ng-click="followPV(userProfile.handle)" ng-show="userProfile.handle !== user.handle && isNotFollowed(userProfile.handle)">follow</a>
+            <h4 ng-show="!isNotFollowed(userProfile.handle)">You are following {{userProfile.handle}}</h4>
+        </div>
+    </div>
+    <h3>Tweet List</h3>
+    <div class="card"  ng-repeat="tweet in tweets">
+        <div class="card-body">
+            <h4 class="card-title"><a href="" ng-click="viewProfileTweet($index)">{{tweet.handle}}</a></h4>
+            <h6 class="card-subtitle mb-2 text-muted">tags: {{tweet.hashTag}}</h6>
+            <p class="card-text">{{tweet.content}}</p>
+
+        </div>
+        <div class="card-footer">
+
+            <a  class="btn btn-primary" ng-click="likeTweet($index)"><span class="glyphicon glyphicon-thumbs-up
+" aria-hidden="true"></span></a>
+            <a  class="btn btn-primary" ng-click="unLikeTweet($index)"><span class="glyphicon glyphicon-thumbs-down
+" aria-hidden="true"></span></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills">
+        <li><a href="" class="active" ng-click="scrollTo('following')">Following</a></li>
+        <li><a href="" ng-click="scrollTo('followers')">Followers</a></li>
+    </ul>
+
+<!--
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class=""><a ng-click="scrollTo('following')"  href="" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Following</a></li>
+            <li role="presentation" class=""><a ng-click="scrollTo('followers')" href="" aria-controls="messages" role="tab" data-toggle="tab" aria-expanded="true">Followers</a></li>
+           <!-- <li role="presentation" class=""><a ng-click="scrollTo('suggestions')" href="" aria-controls="settings" role="tab" data-toggle="tab" aria-expanded="false">Suggestions</a></li> -->
+      <!--  </ul> -->
+
+        <!-- Tab panes -->
+        <div class="tab-content" ng-include="tabs"></div>
+        <!--
+            <div role="tabpanel" class="tab-pane active" id="following">
+                <div ng-repeat="followed in following">
+                    <a href="" ng-click="viewProfileFollowing($index)"><p>{{followed.handle}}</p></a>
+                    <a  class="btn btn-primary" ng-click="unfollow($index)">unfollow</a>
+
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="followers">
+                <div ng-repeat="follower in followers">
+                    <a href="" ng-click="viewProfileFollower($index)"><p>{{follower.handle}}</p></a>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="suggestions">
+                <div ng-repeat="suggested in suggestions">
+                    <a href="" ng-click="viewProfileSuggestions($index)"><p>{{suggested.handle}}</p></a>
+                    <a  class="btn btn-primary" ng-click="follow($index)">follow</a>
+                </div>
+            </div>
+        </div> -->
+
+</div>
+
+

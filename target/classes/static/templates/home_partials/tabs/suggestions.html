@@ -1,0 +1,6 @@
+<div ng-repeat="suggested in suggestions">
+    <a href="" ng-click="viewProfileSuggestions($index)"><h4>{{suggested.handle}}</h4></a>
+    <a  class="btn btn-primary" ng-click="follow($index)" ng-show="homePartials === 'templates/home_partials/home_main.html'">follow</a>
+</div>
+<h4 ng-show="noInterests()">Man! add some interests :)</h4>
+<h4 ng-show="!noInterests() && suggestions.length === 0">Whoa! super follower :P</h4>

@@ -1,0 +1,4 @@
+<div ng-repeat="followed in following">
+    <a href="" ng-click="viewProfileFollowing($index)"><h4>{{followed.handle}}</h4></a>
+    <a  class="btn btn-primary" ng-click="unfollow($index)" ng-show="homePartials === 'templates/home_partials/home_main.html'">unfollow</a>
+</div>

@@ -1,0 +1,168 @@
+<!--
+<div class="row">
+    <div class="col-md-7">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <input type="text" ng-model="tweetData.content">
+
+                    </div>
+                    <div>
+                        <button type="button" ng-click="tweet()">tweet</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container" ng-repeat="tweet in tweets">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>{{tweet.handle}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>{{tweet.content}}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>{{tweet.hashTag}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-3">
+                                <p>likes : {{tweet.likeCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p>{{error}}{{success}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="text" ng-click="changeHomeMainPartials('followers.html')">Followers</button>
+                    <button type="text" ng-click="changeHomeMainPartials('following.html')">Following</button>
+                    <button type="text" ng-click="changeHomeMainPartials('suggestions.html')">Suggestions</button>
+                </div>
+                <div ng-include="homeMainPartials"></div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<!--
+<div class="card" ng-repeat="tweet in tweets">
+    <h4 class="card-header">{{tweet.handle}}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{tweet.hashTag}}</h6>
+    <div class="card-body">
+        <p class="card-text">{{tweet.content}}</p>
+
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary">like</button>
+        <p>likes : {{tweet.likeCount}}</p>
+    </div>
+</div>
+-->
+    <br>
+    <br>
+    <div class="col-md-8">
+        <form>
+            <div class="form-group">
+                <h3>@{{user.handle}}</h3><hr><h4>Followers {{followers.length}}</h4>
+                <textarea class="form-control" id="exampleTextarea" rows="2" ng-model="tweetData.content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="tweet()">Tweet</button>
+        </form>
+        <br>
+        <br>
+        <h3>Tweet list</h3>
+        <div class="card" style="width: 40rem;" ng-repeat="tweet in tweets">
+            <div class="card-body">
+                <h4 class="card-title"><a href="" ng-click="viewProfileTweet($index)">{{tweet.handle}}</a></h4>
+                <h6 class="card-subtitle mb-2 text-muted">tags: {{tweet.hashTag}}</h6>
+                <p class="card-text">{{tweet.content}}</p>
+
+            </div>
+            <div class="card-footer">
+
+                <a  class="btn btn-primary" ng-click="likeTweet($index)"><span class="glyphicon glyphicon-thumbs-up
+" aria-hidden="true"></span></a>
+                <a  class="btn btn-primary" ng-click="unLikeTweet($index)"><span class="glyphicon glyphicon-thumbs-down
+" aria-hidden="true"></span></a>
+                <a  class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="setRetweetIndex($index)"> <!--<a class="btn btn-primary" ng-click="retweet($index)"> --><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></a>
+                <span>{{tweet.likeCount}}</span>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Retweet Content</h4>
+                </div>
+                <div class="modal-content">
+                    <form>
+                        <textarea class="form-control" ng-model="retweetValue"></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" data-dismiss="modal" ng-click="retweet(retweetValue)"><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></a>
+                </div>
+        </div>
+    </div>
+<!--
+    <div class="col-md-4">
+        <div ng-include="homeMainPartials">
+
+        </div>
+    </div>
+    -->
+
+<div class="col-md-4">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills">
+        <li><a href="" class="active" ng-click="scrollTo('following')">Following</a></li>
+        <li><a href="" ng-click="scrollTo('followers')">Followers</a></li>
+        <li><a href="" ng-click="scrollTo('suggestions')">Suggestions</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div ng-include="tabs"></div>
+    <!--
+        <div role="tabpanel" class="tab-pane active" id="following">
+            <div ng-repeat="followed in following">
+                <a href="" ng-click="viewProfileFollowing($index)"><p>{{followed.handle}}</p></a>
+                <a  class="btn btn-primary" ng-click="unfollow($index)">unfollow</a>
+
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="followers">
+            <div ng-repeat="follower in followers">
+                <a href="" ng-click="viewProfileFollower($index)"><p>{{follower.handle}}</p></a>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="suggestions">
+            <div ng-repeat="suggested in suggestions">
+                <a href="" ng-click="viewProfileSuggestions($index)"><p>{{suggested.handle}}</p></a>
+                <a  class="btn btn-primary" ng-click="follow($index)">follow</a>
+            </div>
+        </div>
+    </div> -->
+</div>

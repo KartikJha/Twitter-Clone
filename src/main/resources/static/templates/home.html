@@ -1,0 +1,66 @@
+<!--<div ng-controller="homeController" class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p>Logo</p>
+        </div>
+        <div class="col-md-6">
+            <div class="container">
+                <form class="row">
+                    <div class="col-md-9">
+                        <input type="text" ng-model="searchString">
+                    </div>
+                    <div class="col-md-3">
+                        <button ng-click="parseAndFetch()">search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <p>Profile Button</p>
+        </div>
+    </div>
+    <div ng-include="homePartials"></div>
+</div>
+-->
+<div ng-controller="homeController" class="container">
+    <nav class="row navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <h4 >twitter</h4>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{user.handle}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                           <li>
+                               <a class="dropdown-item" ng-click="viewHome()">Home</a>
+                           </li>
+                           <li>
+                               <a class="dropdown-item" ng-click="viewProfile()">Profile</a>
+                           </li>
+                           <li>
+                               <a class="dropdown-item" ng-click="editProfile()">Edit Profile</a>
+                           </li>
+                           <li>
+                               <a class="dropdown-item" ng-click="logout()">Logout</a>
+                           </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <form class="navbar-form navbar-right" ng-show="homePartials === 'templates/home_partials/home_main.html'">
+                    <div class="form-group">
+                        <input type="text" placeholder="search" class="form-control" ng-model="searchString" class="glyphicon glyphicon-search" aria-hidden="true">
+                    </div>
+                    <button type="submit" class="btn btn-success" ng-click="parseAndFetch()"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+    <div ng-include="homePartials" class="row"></div>
+</div>
+

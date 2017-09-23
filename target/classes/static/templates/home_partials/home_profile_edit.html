@@ -1,0 +1,114 @@
+<br>
+<br>
+<div class="col-md-6">
+    <h3>Current Details</h3>
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{userProfile.first}} {{userProfile.last}}</h4>
+            <h5 class="card-text">Username : {{userProfile.handle}}</h5>
+            <h5 class="card-text">Email : {{userProfile.email}}</h5>
+            <h5 class="card-text">Total Followers : {{followers.length}}</h5>
+            <h5 class="card-text">Total Following : {{following.length}}</h5>
+            <h5 class="card-text">No. of liked tweets : {{likedTweets.length}}</h5>
+            <h4 class="card-title">Interests</h4>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.cricket">Cricket</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.football">Football</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.mma">MMA</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.kabaddi">Kabaddi</h5>
+            <h5 class="card-text" ng-show="userProfile.interestCapture.golf">Golf</h5>
+
+        </div>
+    </div>
+</div>
+
+<form name="registerForm" class="col-md-6" ng-submit="update(registerForm.$valid)" novalidate>
+    <h3>Update Details</h3>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" class="form-control" id="email" value="{{userProfile.email}}" ng-disabled="true">
+    </div >
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control" id="username" value="{{userProfile.handle}}" ng-disabled="true">
+    </div >
+    <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input type="text" name="first" class="form-control" id="first-name" required ng-model="updateData.first" ng-pattern="/^[a-zA-Z ][a-zA-Z ]*$/" ng-trim="true">
+        <p ng-show="registerForm.first.$invalid && !registerForm.first.$pristine" class="help-block">Invalid or required.</p>
+    </div >
+    <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" name="last" class="form-control" id="last-name" required ng-model="updateData.last" ng-pattern="/^[a-zA-Z ][a-zA-Z ]*$/" ng-trim="true">
+        <p ng-show="registerForm.last.$invalid && !registerForm.last.$pristine" class="help-block">Invalid or required.</p>
+    </div >
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password"  required ng-model="updateData.password">
+        <p ng-show="registerForm.password.$invalid && !registerForm.password.$pristine" class="help-block">Required.</p>
+    </div >
+    <div class="form-group">
+        <label for = "interest">Interests</label>
+        <fieldset id="interest">
+            <input type="checkbox" name="cricket" value="cricket" ng-model="updateData.interestCapture['cricket']">Cricket
+            <input type="checkbox" name="football" value="football" ng-model="updateData.interestCapture['football']">Football
+            <input type="checkbox" name="golf" value="golf" ng-model="updateData.interestCapture['golf']">Golf
+            <input type="checkbox" name="mma" value="mma" ng-model="updateData.interestCapture['mma']">MMA
+            <input type="checkbox" name="kabaddi" value="kabaddi" ng-model="updateData.interestCapture['kabaddi']">Kabaddi
+        </fieldset>
+    </div>
+    <button class="btn btn-primary" type="submit" ng-disabled="registerForm.$invalid">update</button>
+</form>
+
+<!--
+<div class="col-md-12">
+    <form class="row">
+        <div class="col-md-12">
+            <div>
+                <label>First Name</label>
+            </div>
+            <div>
+                <input type="text" name="firstName" ng-model="updateupdateData.first" ng-pattern="/^[a-zA-Z ][a-zA-Z ]*$/" required ng-trim="true">
+                <p>{{valid.firstName}}</p>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div>
+                <label>Last Name</label>
+            </div>
+            <div>
+                <input type="text" name="lastName" ng-model="updateData.last" ng-pattern="/^[a-zA-Z ][a-zA-Z ]*$/" required ng-trim="true">
+                <p>{{valid.lastName}}</p>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div>
+                <label>Password</label>
+            </div>
+            <div>
+                <input type="text" ng-model="updateData.password" required>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div>
+                <label>Interests</label>
+            </div>
+            <div>
+                <input type="checkbox" name="cricket" value="cricket" ng-model="updateData.interestCapture['cricket']">Cricket
+                <input type="checkbox" name="football" value="football" ng-model="updateData.interestCapture['football']">Football
+                <input type="checkbox" name="golf" value="golf" ng-model="updateData.interestCapture['golf']">Golf
+                <input type="checkbox" name="mma" value="mma" ng-model="updateData.interestCapture['mma']">MMA
+                <input type="checkbox" name="kabaddi" value="kabaddi" ng-model="updateData.interestCapture['kabaddi']">Kabaddi
+            </div>
+            <div>
+                <button ng-click="update()">update profile</button >
+            </div>
+            <p>{{msg.message}}</p>
+        </div>
+    </form>
+
+</div>
+-->
+
+
+

@@ -1,0 +1,60 @@
+<div class="container" ng-controller="registerController">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+            <h1>Register</h1>
+        </div>
+    </div>
+    <div class="row">
+        <form name="registerForm"  class="col-md-6 col-md-offset-3" novalidate ng-submit="register(registerForm.$valid)">
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" name="first" class="form-control" id="first-name" required ng-model="data.first" ng-trim="true" ng-pattern="/^[a-zA-Z ][a-zA-Z ]*$/">
+                <p ng-show="registerForm.first.$invalid && !registerForm.first.$pristine" class="help-block">Invalid or required.</p>
+            </div >
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" name="last" class="form-control" id="last-name" required ng-model="data.last" ng-trim="true" ng-pattern="/^[a-zA-Z ][a-zA-Z ]*$/">
+                <p ng-show="registerForm.last.$invalid && !registerForm.last.$pristine" class="help-block">Invalid or required.</p>
+            </div >
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" name="email" class="form-control" id="email" required ng-model="data.email" ng-trim="true" ng-pattern="/^[a-zA-Z][a-zA-z0-9_.]*@[a-zA-Z][a-zA-Z0-9]*.[a-z]{3}/">
+                <p ng-show="registerForm.email.$invalid && !registerForm.email.$pristine" class="help-block">Enter a valid email address</p>
+            </div >
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username"class="form-control" id="username" required ng-model="data.handle" ng-trim="true"  ng-minlength="3" ng-maxlength="15">
+                <p ng-show="registerForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                <p ng-show="registerForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+            </div >
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" id="password" required  ng-model="data.password">
+                <p ng-show="registerForm.password.$invalid && !registerForm.password.$pristine" class="help-block">Required.</p>
+            </div >
+            <div class="form-group">
+                <label for="passwordc">Confirm Password</label>
+                <input type="password" name="passwordc" class="form-control" id="passwordc" required ng-model="pcheck">
+                <p ng-show=" (data.password != pcheck) && !registerForm.passwordc.$pristine" class="help-block">Passwords do not match</p>
+            </div >
+            <div class="form-group">
+                <label for = "interest">Interests</label>
+                <fieldset id="interest">
+                    <input type="checkbox" name="cricket" value="cricket" ng-model="data.interestCapture['cricket']">Cricket
+                    <input type="checkbox" name="football" value="football" ng-model="data.interestCapture['football']">Football
+                    <input type="checkbox" name="golf" value="golf" ng-model="data.interestCapture['golf']">Golf
+                    <input type="checkbox" name="mma" value="mma" ng-model="data.interestCapture['mma']">MMA
+                    <input type="checkbox" name="kabaddi" value="kabaddi" ng-model="data.interestCapture['kabaddi']">Kabaddi
+                </fieldset>
+            </div>
+            <button class="btn btn-primary" type="submit" ng-disabled="registerForm.$invalid">Sign up!</button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5 alert alert-danger" role="alert" ng-show="error">
+            <strong>{{error}}</strong>
+        </div>
+    </div>
+
+</div>
